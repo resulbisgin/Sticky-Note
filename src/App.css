@@ -5,4 +5,24 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
+  
+}
+.screen.editable{
+  cursor:crosshair;
+}
+.leave-comment-text{
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  transform: translateY(-50%);
+  font-size: 14px;
+
+}
+.note{
+  background-color: var(--color);
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: #fff;
+  transform: translateX(-50%);
 }
