@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+import { useRef,useState ,useEffect} from 'react';
 import './App.css';
-
+import MainContext from './MainContext';
+import LeaveCommentText from './components/LeaveCommentText';
 function App() {
+  const screen=useRef(null)
+  const [mode,setMode]=useState(false)
+  const [position,setPosition]=useState({
+    x:0,
+    y:0
+  })
+useEffect(()=>{
+  screen.current.focus()
+},[])
+  const handleKeyUp=(e)=>{
+   if(e.key==='c'){
+    setMode(!mode)
+   }
+  }
+  const handMouseMove=(e)=>{
+    setPosition({
+      x:e.pageX,
+      y:e.pageY
+    })
+  } 
+  const data={
+    position
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <MainContext.Provider value={data}>
+    <div ref={screen} tabIndex={0} onKeyUp={handleKeyUp} onMouseMove={handMouseMove} className="screen">
+      <LeaveCommentText/>
+        {mode && (<div>Yorum Modu Aktif</div>)}
     </div>
+    </MainContext.Provider>
   );
 }
 
