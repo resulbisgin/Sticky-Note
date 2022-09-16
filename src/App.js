@@ -29,6 +29,9 @@ useEffect(()=>{
     setMode(!mode)
     setBoxVisible(false)
   }
+  if(e.key==='Escape'){
+    setBoxVisible(false)
+  }
   }
   const handMouseMove=(e)=>{
     if(mode){
@@ -61,7 +64,7 @@ useEffect(()=>{
     <div ref={screen} tabIndex={0} onKeyUp={handleKeyUp} onClick={handleClick} onMouseMove={handMouseMove} className={`screen ${mode&&'editable'}`}>
       
       {mode && (<LeaveCommentText/>)}
-        {notes && notes.map(note=> <Note {...note} /> )}
+        {notes && notes.map((note,index)=> <Note key={index} {...note} /> )}
         {boxVisible && <NoteBox/>}
     </div>
     </MainContext.Provider>
